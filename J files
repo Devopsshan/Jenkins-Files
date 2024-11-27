@@ -10,6 +10,17 @@ pipeline {
         } 
 }
 }
+stage('Package') {
+            steps {
+                echo 'Packaging the application...'
+               
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
+
+
     stages {
         stage('Regression Testing ') {
             steps {
