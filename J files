@@ -10,11 +10,11 @@ pipeline {
         } 
 }
 }
-stage('Package') {
+stage('Clean & Pacakage') {
             steps {
-                echo 'Packaging the application...'
-               
-                sh 'mvn clean package'
+                echo 'Packaging the application.'
+                      sh  'mvn clean'
+                      sh  ' mvn package'
             }
         }
     
