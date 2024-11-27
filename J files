@@ -17,11 +17,8 @@ stage('Package') {
                 sh 'mvn clean package'
             }
         }
-    }
-}
-
-
-    stages {
+    
+stages {
         stage('Regression Testing ') {
             steps {
                 echo 'Regression Testing '
