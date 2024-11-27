@@ -11,34 +11,30 @@ pipeline {
 }
 }
     stages {
-        stage('Code Regression') {
+        stage('Regression Testing ') {
             steps {
-                echo 'Running Code Regression Tests'
-                // Add your regression testing steps here
-                sh 'echo Running regression tests...'
+                echo 'Regression Testing '
+               
             }
         }
         stage('Acceptance') {
             steps {
                 echo 'Running Acceptance Tests'
-                // Add your acceptance testing steps here
-                sh 'echo Running acceptance tests...'
+                
             }
         }
         stage('Post-Acceptance Tasks') {
             parallel {
                 stage('Performance') {
                     steps {
-                        echo 'Running Performance Tests'
-                        // Add your performance testing steps here
-                        sh 'echo Running performance tests...'
+                        echo 'Running Performance Testing'
+                        
                     }
                 }
-                stage('Code Quality') {
+                stage('Code Quality Check Test ') {
                     steps {
-                        echo 'Running Code Quality Checks'
-                        // Add your code quality analysis steps here
-                        sh 'echo Analyzing code quality...'
+                        echo 'Running Code Quality Checks Test'
+                        
                     }
                 }
             }
