@@ -9,12 +9,29 @@ pipeline {
             } 
         } 
 }
-}
+
 stage('Clean & Pacakage') {
             steps {
-                echo 'clean & Package the application.'
+                echo 'cleaning the application.'
                       sh  'mvn clean'
                       sh  ' mvn package'
+            }
+        }
+    
+stage('Post-Acceptance Tasks') {
+            parallel {
+                stage('Performance') {
+                    steps {
+                        echo 'Running Performance Testing'
+                        
+                    }
+                }
+                stage('Code Quality Check Test ') {
+                    steps {
+                        echo 'Running Code Quality Checks Test'
+                        
+                    }
+                }
             }
         }
     
@@ -31,20 +48,5 @@ stages {
                 
             }
         }
-        stage('Post-Acceptance Tasks') {
-            parallel {
-                stage('Performance') {
-                    steps {
-                        echo 'Running Performance Testing'
-                        
-                    }
-                }
-                stage('Code Quality Check Test ') {
-                    steps {
-                        echo 'Running Code Quality Checks Test'
-                        
-                    }
-                }
-            }
-        }
-    }
+}
+   }     
