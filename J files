@@ -10,43 +10,58 @@ pipeline {
         } 
 }
 
-stage('Clean & Pacakage') {
-            steps {
-                echo 'cleaning the application.'
-                      sh  'mvn clean'
-                      sh  ' mvn package'
-            }
+        stage('Clean & Pacakge') {
+        steps {
+        echo 'Cleaning Process'
+        sh 'mvn clean package'
+
         }
+
+        }
+
+
+      stage('Testing Stage') {
+      steps {
+        script {
+          echo 'This is for Testing stage.'
+        }
+      }
+    }
     
-stages('Post-Acceptance Tasks') {
-            parallel {
-                stage('Performance') {
-                    steps {
-                        echo 'Running Performance Testing'
-                        
-                    }
-                }
-                stage('Code Quality Check Test ') {
-                    steps {
-                        echo 'Running Code Quality Checks Test'
-                        
-                    }
-                }
-            }
+        
+        stage('Parallel Stages ') {
+        parallel {
+        
+        stage('Code Quality Checking') {
+        steps{
+            echo 'Running Quality testing'
+          }
+         }
+            
+       stage('Performance Testing') {
+         steps {
+         echo 'Running Performance Testing'
+         }
         }
-    
-stages {
-        stage('Regression Testing ') {
-            steps {
-                echo 'Regression Testing '
-               
-            }
-        }
-        stage('Acceptance') {
-            steps {
-                echo 'Running Acceptance Tests'
-                
-            }
-        }
+            
+        stage('Sequence'){
+         stages{          
+        stage('Regression Testing') {
+        steps {
+        echo 'Running regression testing'
+       }
+      }
+             
+     stage('Acceptance Testing') {
+        steps {
+        echo 'Running acceptance tests'
+       }
+      }
+   }  
 }
-   }     
+         
+    }
+    }  
+    }
+    }
+}
