@@ -1,16 +1,21 @@
 pipeline { 
     agent any 
     stages { 
-        stage("Checkout /Clone from Git & Maven Build") { 
+       
+
+
+
+
+stage("Checkout /Clone from Git & Maven Build") { 
             steps { 
                       git branch: "Main" ,   url : "https://github.com/devopsusergit/PetStoreWebApp.git"
                       sh  'mvn clean'
                       sh  ' mvn package'
             } 
         } 
-}
 
-        stage('Clean & Pacakge') {
+       
+stage('Clean & Pacakge') {
         steps {
         echo 'Cleaning Process'
         sh 'mvn clean package'
@@ -57,8 +62,9 @@ pipeline {
         echo 'Running acceptance tests'
        }
       }
-   }  
+   } 
 }
 }
 } 
+}
 }
